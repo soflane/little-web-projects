@@ -106,6 +106,16 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
           >
             My internal e-mail ({INTERNAL_EMAIL})
           </li>
+          <li
+            key="custom"
+            className="px-3 py-2 cursor-pointer hover:bg-gray-100 border-t border-gray-200"
+            onClick={() => {
+              setShowCustom(true);
+              setIsOpen(false);
+            }}
+          >
+            Enter a new e-mail…
+          </li>
           {filteredEmails.length > 0 && (
             <>
               {filteredEmails.map((email) => (
@@ -119,16 +129,6 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
               ))}
             </>
           )}
-          <li
-            key="custom"
-            className="px-3 py-2 cursor-pointer hover:bg-gray-100 border-t border-gray-200"
-            onClick={() => {
-              setShowCustom(true);
-              setIsOpen(false);
-            }}
-          >
-            Enter a new e-mail…
-          </li>
         </ul>
       )}
       {showCustom && (
