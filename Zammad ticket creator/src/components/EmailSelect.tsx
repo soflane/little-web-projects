@@ -15,10 +15,15 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
   const [customEmail, setCustomEmail] = useState('');
   const [loading, setLoading] = useState(true);
   const [debouncedSearch, setDebouncedSearch] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   const debounce = useCallback((term: string) => {
     const timer = setTimeout(() => setDebouncedSearch(term), 300);
     return () => clearTimeout(timer);
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    setTimeout(() => setIsOpen(false), 150);
   }, []);
 
   useEffect(() => {
@@ -59,6 +64,7 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
     setSearch(email);
     setShowCustom(false);
     onSelect(email);
+    setIsOpen(false);
   };
 
   const handleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,13 +89,15 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        onFocus={() => setIsOpen(true)}
+        onBlur={handleBlur}
         placeholder="Search or select email..."
         className={`w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${
           !isValidEmail(selectedEmail) ? 'border-red-500' : ''
         }`}
         disabled={loading}
       />
-      {!loading && (
+      {!loading && isOpen && (
         <ul className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
           <li
             key="internal"
@@ -114,7 +122,10 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
           <li
             key="custom"
             className="px-3 py-2 cursor-pointer hover:bg-gray-100 border-t border-gray-200"
-            onClick={() => setShowCustom(true)}
+            onClick={() => {
+              setShowCustom(true);
+              setIsOpen(false);
+            }}
           >
             Enter a new e-mail…
           </li>
