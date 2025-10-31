@@ -19,7 +19,7 @@ A minimal React web frontend for creating silent tickets in Zammad via a simple 
    ```
 3. Copy `.env.example` to `.env` and fill in your Zammad details:
    ```
-   VITE_ZAMMAD_BASE_URL=https://your-zammad-instance.com
+   ZAMMAD_BASE_URL=https://your-zammad-instance.com
    VITE_ZAMMAD_TOKEN=your_api_token_here
    VITE_DEFAULT_GROUP=Support  # Your default group name
    VITE_DEFAULT_STATE_ID=2     # e.g., 2 for 'open'
@@ -78,7 +78,7 @@ A minimal React web frontend for creating silent tickets in Zammad via a simple 
 
 ### Docker Compose
 
-1. Copy `.env.example` to `.env` and fill in your Zammad details (VITE_* vars).
+1. Copy `.env.example` to `.env` and fill in your Zammad details (ZAMMAD_BASE_URL and VITE_* vars).
 
 2. Start the stack:
    ```
