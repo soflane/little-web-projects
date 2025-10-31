@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - VITE_ZAMMAD_BASE_URL=${VITE_ZAMMAD_BASE_URL:-https://your-zammad-instance.com}
+      - VITE_ZAMMAD_TOKEN=${VITE_ZAMMAD_TOKEN:-your_api_token_here}
+      - VITE_DEFAULT_GROUP=${VITE_DEFAULT_GROUP:-Support}
+      - VITE_DEFAULT_STATE_ID=${VITE_DEFAULT_STATE_ID:-2}
+      - VITE_DEFAULT_TAGS=${VITE_DEFAULT_TAGS:-internal,silent}
+      - VITE_INTERNAL_EMAIL=${VITE_INTERNAL_EMAIL:-internal@example.com}
+      - ZAMMAD_BASE_URL=${ZAMMAD_BASE_URL:-https://your-zammad-instance.com}
+    env_file:
+      - .env
+    restart: unless-stopped
+    # Optional: Volume for custom nginx config
+    # volumes:
+    #   - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
