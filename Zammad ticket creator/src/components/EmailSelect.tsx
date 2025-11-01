@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { EnvelopeIcon, UserIcon } from '@heroicons/react/24/outline';
+import { UserIcon } from '@heroicons/react/24/outline';
 import { getUsers } from '../api/zammad';
 
 const INTERNAL_EMAIL = import.meta.env.VITE_INTERNAL_EMAIL || 'internal@example.com';
@@ -87,10 +87,6 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
 
   return (
     <div className="relative w-full">
-      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 flex items-center">
-        <EnvelopeIcon className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400" />
-        Customer E-mail
-      </label>
       <input
         id="email"
         type="text"
@@ -103,7 +99,7 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
         aria-haspopup="listbox"
         aria-invalid={hasEmailError ? "true" : undefined}
         aria-describedby={hasEmailError ? emailErrorId : undefined}
-        className={`w-full px-4 sm:px-3 py-3 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors duration-200 disabled:opacity-50 ${
+        className={`w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors duration-200 disabled:opacity-50 ${
           hasEmailError ? 'border-red-500 dark:border-red-500' : ''
         }`}
         disabled={loading}
@@ -116,7 +112,7 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
           <li
             key="internal"
             role="option"
-            className="px-4 sm:px-3 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center transition-colors duration-150 text-gray-900 dark:text-gray-100"
+            className="px-3 py-1 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center transition-colors duration-150 text-gray-900 dark:text-gray-100"
             onClick={() => handleSelect(INTERNAL_EMAIL)}
           >
             <UserIcon className="h-4 w-4 mr-2 text-gray-400 dark:text-gray-500" />
@@ -125,7 +121,7 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
           <li
             key="custom"
             role="option"
-            className="px-4 sm:px-3 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600 flex items-center transition-colors duration-150 text-gray-900 dark:text-gray-100"
+            className="px-3 py-1 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600 flex items-center transition-colors duration-150 text-gray-900 dark:text-gray-100"
             onClick={() => {
               setShowCustom(true);
               setIsOpen(false);
@@ -140,7 +136,7 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
                 <li
                   key={email}
                   role="option"
-                  className="px-4 sm:px-3 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600 flex items-center transition-colors duration-150 text-gray-900 dark:text-gray-100"
+                  className="px-3 py-1 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600 flex items-center transition-colors duration-150 text-gray-900 dark:text-gray-100"
                   onClick={() => handleSelect(email)}
                 >
                   <UserIcon className="h-4 w-4 mr-2 text-gray-400 dark:text-gray-500" />
@@ -160,7 +156,7 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
           placeholder="Enter custom email"
           aria-invalid={hasCustomEmailError ? "true" : undefined}
           aria-describedby={hasCustomEmailError ? emailErrorId : undefined}
-          className={`w-full px-4 sm:px-3 py-3 sm:py-2 mt-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors duration-200 ${
+          className={`w-full px-3 py-2 mt-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors duration-200 ${
             hasCustomEmailError ? 'border-red-500 dark:border-red-500' : ''
           }`}
         />

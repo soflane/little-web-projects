@@ -42,16 +42,16 @@ function App() {
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} py-8 transition-colors duration-200`}>
-      <div className="max-w-md mx-auto p-4">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+    <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} py-4 transition-colors duration-200`}>
+      <div className="max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto p-0">
+        <div className="flex justify-between items-center mb-1">
+          <h1 className={`text-base font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Zammad Ticket Creator
           </h1>
           <div className="flex items-center space-x-2">
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+              className="p-1.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
               aria-label="Toggle dark mode"
             >
               {darkMode ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
@@ -59,7 +59,7 @@ function App() {
             <div className="relative">
               <button
                 onClick={() => setShowTooltip(!showTooltip)}
-                className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+                className="p-1.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
                 aria-label="Help"
               >
                 <QuestionMarkCircleIcon className="h-5 w-5" />

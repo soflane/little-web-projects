@@ -155,7 +155,7 @@ export default function TicketForm() {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
         <Toaster position="top-right" />
-        <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center animate-fade-in">
+        <div className="max-w-lg w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center animate-fade-in">
           <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 dark:bg-green-900 mb-4">
             <CheckIcon className="h-6 w-6 text-green-600 dark:text-green-300" />
           </div>
@@ -185,18 +185,18 @@ export default function TicketForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8">
       <Toaster position="top-right" />
-      <div className="max-w-2xl mx-auto">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
             Create Support Ticket
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Title Field */}
             <div>
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 <TagIcon className="inline-block w-5 h-5 mr-2" />
                 Title
               </label>
@@ -205,7 +205,7 @@ export default function TicketForm() {
                 id="title"
                 value={formData.title}
                 onChange={(e) => handleChange('title', e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors duration-200"
+                className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors duration-200"
                 placeholder="Brief description of the issue"
                 required
               />
@@ -213,7 +213,7 @@ export default function TicketForm() {
 
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 <EnvelopeIcon className="inline-block w-5 h-5 mr-2" />
                 Email
               </label>
@@ -225,7 +225,7 @@ export default function TicketForm() {
 
             {/* Priority Field */}
             <div>
-              <label htmlFor="priority" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="priority" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Priority
               </label>
               <PrioritySelect
@@ -236,11 +236,11 @@ export default function TicketForm() {
 
             {/* Note Field with Rich Text */}
             <div>
-              <label htmlFor="note" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label htmlFor="note" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 <ChatBubbleLeftIcon className="inline-block w-5 h-5 mr-2" />
                 Description
               </label>
-              <div className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 overflow-hidden">
+              <div className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 overflow-hidden min-h-32">
                 <ReactQuill
                   theme="snow"
                   value={formData.note}
@@ -257,7 +257,7 @@ export default function TicketForm() {
             <button
               type="submit"
               disabled={!isFormValid() || submitting}
-              className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-all duration-200 ${
+              className={`w-full py-2 px-3 rounded-lg font-semibold text-white transition-all duration-200 ${
                 !isFormValid() || submitting
                   ? 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed'
                   : 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 shadow-lg hover:shadow-xl'
@@ -277,7 +277,7 @@ export default function TicketForm() {
             </button>
           </form>
 
-          <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 text-center">
+          <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 text-center">
             Your progress is automatically saved
           </p>
         </div>

@@ -62,9 +62,6 @@ export default function PrioritySelect({ onSelect, value }: PrioritySelectProps)
   if (loading) {
     return (
       <div className="w-full">
-        <label htmlFor="priority" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Priority
-        </label>
         <select
           id="priority"
           disabled
@@ -78,9 +75,6 @@ export default function PrioritySelect({ onSelect, value }: PrioritySelectProps)
 
   return (
     <div className="w-full">
-      <label htmlFor="priority" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-        Priority
-      </label>
       <select
         id="priority"
         value={selectedPriority}
