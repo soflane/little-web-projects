@@ -1,6 +1,7 @@
 # Zammad Silent Ticket Creator
 
 A minimal React web frontend for creating silent tickets in Zammad via a simple form. Silent tickets use internal notes only, ensuring no public visibility.
+
 ![Screenshot](doc/img/Screenshot-light.png)
 ## Features
 
