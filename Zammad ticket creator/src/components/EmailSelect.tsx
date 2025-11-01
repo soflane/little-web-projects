@@ -87,8 +87,8 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
 
   return (
     <div className="relative w-full">
-      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
-        <EnvelopeIcon className="h-4 w-4 mr-2 text-gray-500" />
+      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 flex items-center">
+        <EnvelopeIcon className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400" />
         Customer E-mail
       </label>
       <input
@@ -103,35 +103,35 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
         aria-haspopup="listbox"
         aria-invalid={hasEmailError ? "true" : undefined}
         aria-describedby={hasEmailError ? emailErrorId : undefined}
-        className={`w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 disabled:opacity-50 ${
-          hasEmailError ? 'border-red-500' : ''
+        className={`w-full px-4 sm:px-3 py-3 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors duration-200 disabled:opacity-50 ${
+          hasEmailError ? 'border-red-500 dark:border-red-500' : ''
         }`}
         disabled={loading}
       />
       {!loading && isOpen && (
         <ul 
           role="listbox" 
-          className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto transition-all duration-200 opacity-100 transform scale-100"
+          className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg max-h-40 sm:max-h-60 overflow-auto transition-all duration-200 opacity-100 transform scale-100"
         >
           <li
             key="internal"
             role="option"
-            className="px-3 py-2 cursor-pointer hover:bg-gray-100 flex items-center transition-colors duration-150"
+            className="px-4 sm:px-3 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center transition-colors duration-150 text-gray-900 dark:text-gray-100"
             onClick={() => handleSelect(INTERNAL_EMAIL)}
           >
-            <UserIcon className="h-4 w-4 mr-2 text-gray-400" />
+            <UserIcon className="h-4 w-4 mr-2 text-gray-400 dark:text-gray-500" />
             My internal e-mail ({INTERNAL_EMAIL})
           </li>
           <li
             key="custom"
             role="option"
-            className="px-3 py-2 cursor-pointer hover:bg-gray-100 border-t border-gray-200 flex items-center transition-colors duration-150"
+            className="px-4 sm:px-3 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600 flex items-center transition-colors duration-150 text-gray-900 dark:text-gray-100"
             onClick={() => {
               setShowCustom(true);
               setIsOpen(false);
             }}
           >
-            <UserIcon className="h-4 w-4 mr-2 text-gray-400" />
+            <UserIcon className="h-4 w-4 mr-2 text-gray-400 dark:text-gray-500" />
             Enter a new e-mail…
           </li>
           {filteredEmails.length > 0 && (
@@ -140,10 +140,10 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
                 <li
                   key={email}
                   role="option"
-                  className="px-3 py-2 cursor-pointer hover:bg-gray-100 border-t border-gray-200 flex items-center transition-colors duration-150"
+                  className="px-4 sm:px-3 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600 flex items-center transition-colors duration-150 text-gray-900 dark:text-gray-100"
                   onClick={() => handleSelect(email)}
                 >
-                  <UserIcon className="h-4 w-4 mr-2 text-gray-400" />
+                  <UserIcon className="h-4 w-4 mr-2 text-gray-400 dark:text-gray-500" />
                   {email}
                 </li>
               ))}
@@ -160,13 +160,13 @@ export default function EmailSelect({ onSelect, value }: EmailSelectProps) {
           placeholder="Enter custom email"
           aria-invalid={hasCustomEmailError ? "true" : undefined}
           aria-describedby={hasCustomEmailError ? emailErrorId : undefined}
-          className={`w-full px-3 py-2 mt-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 ${
-            hasCustomEmailError ? 'border-red-500' : ''
+          className={`w-full px-4 sm:px-3 py-3 sm:py-2 mt-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors duration-200 ${
+            hasCustomEmailError ? 'border-red-500 dark:border-red-500' : ''
           }`}
         />
       )}
       {hasEmailError && (
-        <p id={emailErrorId} className="mt-1 text-sm text-red-600">Please enter a valid email address.</p>
+        <p id={emailErrorId} className="mt-1 text-sm text-red-600 dark:text-red-400">Please enter a valid email address.</p>
       )}
     </div>
   );

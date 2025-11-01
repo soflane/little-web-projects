@@ -24,6 +24,11 @@ interface MeResponse {
   // Other fields
 }
 
+interface TicketResponse {
+  id: number;
+  // Other fields
+}
+
 interface TicketPayload {
   title: string;
   group: string;
@@ -75,7 +80,7 @@ export async function getMe(): Promise<number> {
   }
 }
 
-export async function createTicket(title: string, customerEmail: string, note: string): Promise<void> {
+export async function createTicket(title: string, customerEmail: string, note: string): Promise<TicketResponse> {
   const ownerId = await getMe();
   const customerId = `guess:${customerEmail}`;
   const payload: TicketPayload = {
@@ -105,7 +110,8 @@ export async function createTicket(title: string, customerEmail: string, note: s
     throw new Error(`Failed to create ticket: ${response.status} ${response.statusText} - ${responseText.substring(0, 200)}`);
   }
   try {
-    JSON.parse(responseText); // Validate JSON if needed
+    const ticket: TicketResponse = JSON.parse(responseText);
+    return ticket;
   } catch (parseError) {
     console.error('JSON Parse Error (createTicket):', responseText.substring(0, 500));
     throw new Error('Invalid JSON response from server');
