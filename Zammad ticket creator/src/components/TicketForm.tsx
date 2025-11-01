@@ -25,7 +25,7 @@ export default function TicketForm() {
   const [emailValid, setEmailValid] = useState(false);
   const [successView, setSuccessView] = useState(false);
   const [ticketId, setTicketId] = useState<number | null>(null);
-  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Rich text editor modules with all features
   const quillModules = {

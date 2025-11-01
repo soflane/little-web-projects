@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { MoonIcon, SunIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import TicketForm from './components/TicketForm';
 
