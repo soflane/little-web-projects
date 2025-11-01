@@ -29,12 +29,21 @@ interface TicketResponse {
   // Other fields
 }
 
+interface TicketPriority {
+  id: number;
+  name: string;
+  default_create: boolean;
+  active: boolean;
+}
+
 interface TicketPayload {
   title: string;
   group: string;
   customer_id: string;
   owner_id: number;
+  priority_id: number;
   article: {
+    content_type: string;
     body: string;
     type: 'note';
     internal: true;
@@ -42,6 +51,22 @@ interface TicketPayload {
   state_id: number;
   mentions: number[];
   tags: string;
+}
+
+export async function getPriorities(): Promise<TicketPriority[]> {
+  const response = await fetch('/zammad-api/api/v1/ticket_priorities', { headers });
+  const responseText = await response.text();
+  if (!response.ok) {
+    console.error('API Error Response (getPriorities):', responseText);
+    throw new Error(`Failed to fetch priorities: ${response.status} ${response.statusText} - ${responseText.substring(0, 200)}`);
+  }
+  try {
+    const priorities: TicketPriority[] = JSON.parse(responseText);
+    return priorities.filter(p => p.active);
+  } catch (parseError) {
+    console.error('JSON Parse Error (getPriorities):', responseText.substring(0, 500));
+    throw new Error('Invalid JSON response from server');
+  }
 }
 
 export async function getUsers(): Promise<string[]> {
@@ -80,7 +105,7 @@ export async function getMe(): Promise<number> {
   }
 }
 
-export async function createTicket(title: string, customerEmail: string, note: string): Promise<TicketResponse> {
+export async function createTicket(title: string, customerEmail: string, note: string, priority: number): Promise<TicketResponse> {
   const ownerId = await getMe();
   const customerId = `guess:${customerEmail}`;
   const payload: TicketPayload = {
@@ -88,7 +113,9 @@ export async function createTicket(title: string, customerEmail: string, note: s
     group: GROUP,
     customer_id: customerId,
     owner_id: ownerId,
+    priority_id: priority,
     article: {
+      content_type: 'text/html',
       body: note,
       type: 'note',
       internal: true,

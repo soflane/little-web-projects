@@ -25,7 +25,7 @@ A minimal React web frontend for creating silent tickets in Zammad via a simple 
    ```
 3. Copy `.env.example` to `.env` and fill in your Zammad details:
    ```
-   ZAMMAD_BASE_URL=https://your-zammad-instance.com
+   VITE_ZAMMAD_BASE_URL=https://your-zammad-instance.com  # Base URL for proxy and dashboard links
    VITE_ZAMMAD_TOKEN=your_api_token_here
    VITE_DEFAULT_GROUP=Support  # Your default group name
    VITE_DEFAULT_STATE_ID=2     # e.g., 2 for 'open'
@@ -63,11 +63,17 @@ A minimal React web frontend for creating silent tickets in Zammad via a simple 
 
 ## Testing
 
-- Run e2e tests:
+- Run unit tests (Vitest):
+  ```
+  npm test
+  ```
+  Covers component rendering, validation, Quill formatting, submission, errors, auto-save.
+
+- Run e2e tests (Playwright):
   ```
   npx playwright test
   ```
-- Tests cover happy path form submission (mock API if needed).
+  Tests full form interaction, rich text, priority, submit, success button, new tab open.
 
 ## Docker
 
@@ -93,7 +99,7 @@ A minimal React web frontend for creating silent tickets in Zammad via a simple 
 
 ### Docker Compose
 
-1. Copy `.env.example` to `.env` and fill in your Zammad details (ZAMMAD_BASE_URL and VITE_* vars).
+1. Copy `.env.example` to `.env` and fill in your Zammad details (VITE_* vars).
 
 2. Start the stack:
    ```
@@ -115,7 +121,7 @@ A minimal React web frontend for creating silent tickets in Zammad via a simple 
 
 ### Troubleshooting Docker
 
-- If Nginx fails to start with "invalid number of arguments in proxy_set_header", ensure ZAMMAD_BASE_URL is set in .env and entrypoint.sh exports ZAMMAD_HOST correctly (fixed in current version).
+- If Nginx fails to start with "invalid number of arguments in proxy_set_header", ensure VITE_ZAMMAD_BASE_URL is set in .env and entrypoint.sh exports ZAMMAD_HOST correctly (fixed in current version).
 - API calls failing to localhost: Verify proxy in generated /etc/nginx/conf.d/default.conf (use docker logs to see preview).
 - Env vars not loading: Use `env_file: .env` in docker-compose.yml; rebuild with --build.
 
@@ -149,9 +155,10 @@ labels:
 
 - React + TypeScript + Vite
 - Tailwind CSS for styling
+- react-quill for rich text editing
 - Fetch API for Zammad integration
 - react-hot-toast for notifications
-- Playwright for e2e testing
+- Vitest for unit testing
 
 ## API Endpoints Used
 

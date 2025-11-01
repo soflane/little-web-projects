@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/zammad-api': {
-          target: env.ZAMMAD_BASE_URL,
+          target: env.VITE_ZAMMAD_BASE_URL,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/zammad-api/, ''),
         },
