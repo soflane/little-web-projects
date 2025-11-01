@@ -7,7 +7,12 @@ A minimal React web frontend for creating silent tickets in Zammad via a simple 
 - Customer Email selection: Internal email, existing users (searchable), or custom input.
 - Ticket Name (text) and Initial Note (textarea).
 - Validation for email format and required fields.
-- Success/error toasts on submission.
+- Success/error toasts on submission with ticket ID and animation.
+- Dark mode support with toggle and localStorage persistence.
+- Enhanced mobile responsiveness with larger touch targets.
+- Form auto-save/recovery using localStorage (drafts persist across sessions).
+- Keyboard shortcut: Cmd/Ctrl + Enter to submit.
+- Help tooltip explaining silent tickets.
 - Uses Zammad API for user fetch, current user resolution, and ticket creation.
 
 ## Setup
@@ -37,6 +42,15 @@ A minimal React web frontend for creating silent tickets in Zammad via a simple 
    npm run build
    ```
    Output in `dist/` folder.
+
+## Usage Notes
+
+- **Dark Mode**: Toggle using the sun/moon icon in the header; persists across sessions.
+- **Mobile**: Form adapts with larger inputs for touch; test on devices.
+- **Auto-Save**: Drafts save automatically every 500ms; reload to restore.
+- **Shortcuts**: Cmd/Ctrl + Enter submits the form when valid.
+- **Help**: Click the question mark icon for silent ticket explanation.
+- Toasts adapt to theme; success shows ticket ID if available.
 
 ## How Silent Tickets Work
 
